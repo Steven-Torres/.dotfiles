@@ -71,10 +71,19 @@ require'lspconfig'.html.setup {
   capabilities = capabilities,
 }
 
-local binRoot = 'C:\\Users\\steve\\Appdata\\Local\\Programs\\lua-language-server\\'
+local binRoot = ''
+local bin = ''
+
+if jit.os == 'Windows' then
+	binRoot = 'C:\\Users\\steve\\Appdata\\Local\\Programs\\lua-language-server\\'
+	bin = binRoot .. 'bin\\lua-language-server.exe'
+else
+	binRoot = '/home/steven/.local/share/lua-language-server/'
+	bin = 'lua-language-server'
+end
 
 lspconfig.sumneko_lua.setup({
-	cmd = { binRoot .. 'bin\\lua-language-server.exe', '-E', binRoot .. 'main.lua' },
+	cmd = { bin, '-E', binRoot .. 'main.lua' },
 	on_attach = on_attach,
 	settings = {
 		Lua = {
