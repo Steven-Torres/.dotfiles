@@ -15,17 +15,18 @@ vim.opt.swapfile = false
 
 vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
 
-if vim.fn.executable('pwsh') then
-	vim.opt.shell = 'pwsh'
-else
-	vim.opt.shell = 'powershell'
+if jit.os == 'Windows' then
+	if vim.fn.executable('pwsh') then
+		vim.opt.shell = 'pwsh'
+	else
+		vim.opt.shell = 'powershell'
+	end
+
+	vim.opt.shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
+	vim.opt.shellredir = '-RedirectStandardOutput %s -NoNewWindow -Wait'
+	vim.opt.shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
+	vim.opt.shellquote = 'shellxquote='
 end
-
-vim.opt.shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
-vim.opt.shellredir = '-RedirectStandardOutput %s -NoNewWindow -Wait'
-vim.opt.shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
-vim.opt.shellquote = 'shellxquote='
-
 
 vim.opt.clipboard = 'unnamedplus'
 -- for background terminals

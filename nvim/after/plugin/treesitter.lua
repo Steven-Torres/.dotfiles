@@ -1,4 +1,7 @@
-require('nvim-treesitter.install').compilers = { 'clang' }
+if vim.loop.os_uname().sysname == 'Windows' then
+	require('nvim-treesitter.install').compilers = { 'clang' }
+end
+
 require('nvim-treesitter.configs').setup {
 	ensure_installed = 'all',
 	auto_install = true,

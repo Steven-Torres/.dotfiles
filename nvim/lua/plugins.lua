@@ -12,6 +12,7 @@ return require('packer').startup(function(use)
 		requires = {'nvim-lua/plenary.nvim'}
 	}
  	use 'morhetz/gruvbox'
+	use 'folke/tokyonight.nvim'
  	-- nvim-cmp plugins
  	use 'hrsh7th/cmp-nvim-lsp'
  	use 'hrsh7th/cmp-buffer'
